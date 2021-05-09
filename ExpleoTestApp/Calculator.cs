@@ -11,7 +11,8 @@ namespace ExpleoTestApp
 {
    public static class Calculator
     {       
-        //Metoden hanterar eventuella felaktiga inmatningar, och klarar av alla tre nivåer
+        //Metoden körs ej. Hade jag enbart behövt göra en sträng kalkylator så hade jag använt den.
+        //Men för denna uppgifts syfte så visar den inte så bra hur jag skulle resonera.
         public static (double,string) EvaluateExpressionEveryLevel(string expression)
         {
             string tidyExpression = Regex.Replace(expression, @"[^0-9+/\-*.,]", string.Empty).Replace(",",".");
@@ -20,13 +21,12 @@ namespace ExpleoTestApp
             //För att vissa vill skriva 5.5 som 5,5 exempelvis så ersätter jag avslutningsvis "," med . för att göra decimaluträkningar
 
             return (double.Parse(new DataTable().Compute(tidyExpression,null).ToString()),tidyExpression);
-            //Mycket magi som händer här, Börjar med att konvertera strängen till en double, 
-            //Datatable returnerar ett objekt så den behöver sättas till en sträng för att kunna konverteras 
-            //skapar en tilfällig tabell, som räknar ut det städade uttrycket
-
+            //Mycket magi som händer här. Exakt hur DataTable.Compute räknar ut stränguttrycket när applikation kompilerar vet jag inte.
+            //Skapar en tilfällig tabell, som räknar ut det städade uttrycket, eftersom jag inte läser från en riktig tabell utan skickar in tidyExpression som kolumnrad
+            //Så sätter jag inget filter.
         }
-
-        //Tänkt till att vara återanvändbar, men fungerade ej för Level3
+            
+        //Bygger Listor av siffror och chars till Level 2 och 3
         private static (List<double>,List<char>) ListFiller(string tidyExpression)
         {
             List<double> numbers = new();

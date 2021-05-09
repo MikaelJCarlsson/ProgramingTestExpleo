@@ -8,7 +8,7 @@ namespace ExpleoTestApp
 {
     public static class Anagram
     {
-        //I detta testet utgår jag ifrån att båda strängarna inte kommer vara NullOrEmpty
+        
         public static bool IsAnagram(string test, string original)
         {
             //För att lösa detta så vill jag jämföra två strängar med varandra, det lättaste sättet jag kom på är att sortera strängarna, 
